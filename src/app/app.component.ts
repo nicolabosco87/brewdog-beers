@@ -2,9 +2,14 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { NgRedux, DevToolsExtension } from '@angular-redux/store';
 
-import { HomePage } from '../pages/home/home';
+import { AppState, INITIAL_STATE } from '../store/store';
+import { BeerActions } from '../actions/actions';
+import { RootReducer } from '../reducers/root-reducer';
+
 import { ListPage } from '../pages/list/list';
+import { DetailPage } from '../pages/detail/detail';
 
 @Component({
   templateUrl: 'app.html'
@@ -12,19 +17,29 @@ import { ListPage } from '../pages/list/list';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = ListPage;
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen,
+              ngRedux: NgRedux<AppState>,
+              devTools: DevToolsExtension,
+              private actions: BeerActions) {
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'List', component: ListPage },
+      { title: 'Detail', component: DetailPage }
     ];
 
+
+    ngRedux.configureStore(
+        RootReducer,
+        INITIAL_STATE,
+        null,
+        devTools.isEnabled() ? [ devTools.enhancer() ] : []);
   }
 
   initializeApp() {
@@ -33,6 +48,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+
+
+        // Get beer list
+        this.actions.getList();
     });
   }
 

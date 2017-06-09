@@ -1,3 +1,18 @@
 page-list {
 
 }
+
+
+ion-thumbnail {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-md ion-thumbnail ion-img, .item-md ion-thumbnail img {
+  &.list__image {
+    height: 100px;
+    width: auto;
+  }
+
+}

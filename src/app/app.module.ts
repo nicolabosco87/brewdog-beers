@@ -9,16 +9,20 @@ import { BeerActions } from '../actions/actions'
 import { MyApp } from './app.component';
 import { ListPage } from '../pages/list/list';
 import { DetailPage } from '../pages/detail/detail';
+import { ListPopoverPage } from '../pages/list/list-popover/list-popover';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PunkApiProvider } from '../providers/punk-api/punk-api';
+import {AboutPage} from "../pages/about/about";
 
 @NgModule({
   declarations: [
     MyApp,
     ListPage,
-    DetailPage
+    DetailPage,
+    ListPopoverPage,
+    AboutPage
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,9 @@ import { PunkApiProvider } from '../providers/punk-api/punk-api';
   entryComponents: [
     MyApp,
     ListPage,
-    DetailPage
+    DetailPage,
+    ListPopoverPage,
+    AboutPage
   ],
   providers: [
     StatusBar,

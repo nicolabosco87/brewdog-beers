@@ -3,18 +3,29 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>Brewdog beers</ion-title>
+
+    <ion-buttons end>
+      <button ion-button icon-only (click)="presentPopover($event)">
+        <ion-icon name="more"></ion-icon>
+      </button>
+    </ion-buttons>
+
+
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="beers">
-    <button ion-item *ngFor="let b of beers" >
-      {{b.name}}
-      <div class="item-note" item-right>
-        {{b.tagline}}
-      </div>
-    </button>
+
+  <ion-list >
+    <ion-item *ngFor="let b of beers" (click)="goToDetail(b)" >
+      <ion-thumbnail item-start>
+        <img class="list__image" src="{{ b.image_url}}">
+      </ion-thumbnail>
+      <h2>{{ b.name }}</h2>
+      <p>{{ b.tagline }}</p>
+      <button ion-button clear item-end>View</button>
+    </ion-item>
   </ion-list>
 
 </ion-content>

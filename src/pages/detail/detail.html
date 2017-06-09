@@ -3,12 +3,46 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Detail</ion-title>
+    <ion-title>{{ beer.name }}</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
 
-  Detail page
 
+  <div padding>
+    <h1>{{ beer.name }}</h1>
+
+    <h3>{{ beer.tagline }}</h3>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 >
+          <img class="beer-image" src="{{ beer.image_url }}" alt="{{ beer.name }}">
+        </ion-col>
+        <ion-col col-6 >
+
+          <ion-list>
+            <ion-item>
+              ABV <ion-badge item-end>{{ beer.abv }}</ion-badge>
+            </ion-item>
+            <ion-item>
+              IBU <ion-badge item-end>{{ beer.ibu }}</ion-badge>
+            </ion-item>
+            <ion-item>
+              EBC <ion-badge item-end>{{ beer.ebc }}</ion-badge>
+            </ion-item>
+          </ion-list>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+
+    <p>
+      {{ beer.description }}
+    </p>
+
+  </div>
+
+  
 </ion-content>

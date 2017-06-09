@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
-import { AppState } from '../store/store'
+import {AppState, INITIAL_FILTERS} from '../store/store'
 
 import { PunkApiProvider } from '../providers/punk-api/punk-api'
 import { Beer } from '../models/beer'
@@ -14,10 +14,10 @@ export class BeerActions {
 
     constructor(private ngRedux: NgRedux<AppState>, private punkApiProvider: PunkApiProvider) {}
 
-    getList() {
-        this.ngRedux.dispatch({ type: BeerActions.GET_LIST });
+    getList(filters: any = INITIAL_FILTERS) {
+        this.ngRedux.dispatch({ type: BeerActions.GET_LIST, payload: {filters: filters} });
 
-        this.punkApiProvider.list().subscribe(
+        this.punkApiProvider.list(filters).subscribe(
             res => {
                 this.receiveList(res);
             }

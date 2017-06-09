@@ -3,24 +3,20 @@ import { Beer } from '../models/beer'
 export interface AppState {
     loading: boolean,
     beers: Beer[],
-    current: Beer
+    filters: any
+}
+
+export const INITIAL_FILTERS = {
+  name: '',
+  abv: {lower: 1, upper: 15},
+  ibu: {lower: 1, upper: 100},
+  ebc: {lower: 1, upper: 100},
 }
 
 export const INITIAL_STATE: AppState = {
     loading: true,
-    beers: [
-        new Beer('1','Nome', 'tagll', 'desc', 'img-url', 10, 20, 30),
-        new Beer('2','Nome2', 'tagll', 'desc', 'img-url', 10, 20, 30),
-    ],
-    current: null
+    beers: [],
+    filters: INITIAL_FILTERS
 }
 
 
-/*public id: string,
-    public name: string,
-    public tagline: string,
-    public description: string,
-    public image_url: string,
-    public abv: number,
-    public ibu: number,
-    public ebc: number*/

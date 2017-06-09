@@ -10,11 +10,16 @@ import { RootReducer } from '../reducers/root-reducer';
 
 import { ListPage } from '../pages/list/list';
 import { DetailPage } from '../pages/detail/detail';
+import {AboutPage} from "../pages/about/about";
+import {Subscription} from "rxjs/Subscription";
+
 
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+  subscription: Subscription;
+  loading: boolean;
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = ListPage;
@@ -31,7 +36,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'List', component: ListPage },
-      { title: 'Detail', component: DetailPage }
+      { title: 'About', component: AboutPage }
     ];
 
 
@@ -40,6 +45,9 @@ export class MyApp {
         INITIAL_STATE,
         null,
         devTools.isEnabled() ? [ devTools.enhancer() ] : []);
+
+
+
   }
 
   initializeApp() {

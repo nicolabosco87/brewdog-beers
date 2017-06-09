@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
 import {AppState, INITIAL_FILTERS} from '../store/store'
+import { Vibration } from '@ionic-native/vibration';
 
 import { PunkApiProvider } from '../providers/punk-api/punk-api'
 import { Beer } from '../models/beer'
@@ -12,7 +13,7 @@ export class BeerActions {
     static GET_DETAIL = 'GET_DETAIL';
     static RECEIVE_DETAIL = 'RECEIVE_DETAIL';
 
-    constructor(private ngRedux: NgRedux<AppState>, private punkApiProvider: PunkApiProvider) {}
+    constructor(private ngRedux: NgRedux<AppState>, private punkApiProvider: PunkApiProvider, private vibration: Vibration) {}
 
     getList(filters: any = INITIAL_FILTERS) {
         this.ngRedux.dispatch({ type: BeerActions.GET_LIST, payload: {filters: filters} });
@@ -26,5 +27,6 @@ export class BeerActions {
 
     receiveList(beers: Beer[]) {
         this.ngRedux.dispatch({ type: BeerActions.RECEIVE_LIST, payload: {beers: beers} });
+        // this.vibration.vibrate(1000);
     }
 }

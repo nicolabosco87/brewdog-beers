@@ -15,6 +15,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { PunkApiProvider } from '../providers/punk-api/punk-api';
 import {AboutPage} from "../pages/about/about";
+import { Vibration } from "@ionic-native/vibration";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {AboutPage} from "../pages/about/about";
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     PunkApiProvider,
-    BeerActions
+    BeerActions,
+    Vibration
   ]
 })
 export class AppModule {}
